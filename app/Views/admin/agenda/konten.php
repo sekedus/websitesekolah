@@ -81,7 +81,7 @@
 
 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">
+                <button type="button" class="btn btn-info" data-dismiss="modal">
                 <i class="fa fa-times"></i> Close</button>
             </div>
         </div>

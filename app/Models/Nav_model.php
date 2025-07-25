@@ -19,6 +19,18 @@ class Nav_model extends Model
         return $query->getResult();
     }
 
+    // Nav jenjang_pendidikan
+    public function jenjang_pendidikan()
+    {
+        $builder = $this->db->table('jenjang_pendidikan');
+        $builder->select('jenjang_pendidikan.id_jenjang_pendidikan,  MAX(jenjang_pendidikan.judul_jenjang_pendidikan) AS judul_jenjang_pendidikan, MAX(jenjang_pendidikan.slug_jenjang_pendidikan) AS slug_jenjang_pendidikan, MAX(jenjang_pendidikan.icon) AS icon, MAX(jenjang_pendidikan.ringkasan) AS ringkasan, MAX(jenjang_pendidikan.gambar) AS gambar, jenjang.nama_jenjang, jenjang.id_jenjang');
+        $builder->join('jenjang', 'jenjang.id_jenjang = jenjang_pendidikan.id_jenjang');
+        $builder->where(array('status_jenjang_pendidikan' => 'Publish'));
+        $builder->where(array('jenis_jenjang_pendidikan' => 'Jenjang'));
+        $builder->groupBy('jenjang_pendidikan.id_jenjang_pendidikan');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 
     // Nav profil
     public function profil($jenis_berita)

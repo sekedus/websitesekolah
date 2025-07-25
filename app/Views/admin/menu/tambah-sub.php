@@ -20,7 +20,7 @@ echo form_open(base_url('admin/menu'));
 echo csrf_field(); 
 ?>
 <div class="modal-basic modal fade show" id="modal-sub" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content modal-bg-white ">
 			<div class="modal-header">
 				<h6 class="modal-title">Tambah Sub Menu</h6>

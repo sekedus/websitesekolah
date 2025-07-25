@@ -4,7 +4,7 @@
 echo form_open(base_url('admin/agenda/proses_jadwal'));
 ?>
 <p>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Tambah">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Tambah">
           <i class="fa fa-plus"></i> TAMBAH JADWAL
         </button>
       </p>

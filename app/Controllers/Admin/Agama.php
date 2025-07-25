@@ -16,7 +16,7 @@ class Agama extends BaseController
 		$total 	= $m_agama->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_agama' 	=> 'required|min_length[3]|is_unique[agama.nama_agama]',
         	])) {
@@ -46,7 +46,7 @@ class Agama extends BaseController
 		$agama 	= $m_agama->detail($id_agama);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_agama' 	=> 'required|min_length[3]',
         	])) {

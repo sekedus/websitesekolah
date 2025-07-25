@@ -222,6 +222,14 @@ class Website
 		return base_url('assets/upload/image/'.$konfigurasi->logo);
 	}
 
+	// login
+	public function login()
+	{
+		$m_konfigurasi 	= new Konfigurasi_model();
+		$konfigurasi 	= $m_konfigurasi->listing();
+		return base_url('assets/upload/image/'.$konfigurasi->login);
+	}
+
 	// tanggal_bulan
 	public function tanggal_id($tanggal)
 	{
@@ -574,10 +582,21 @@ class Website
 		}
 	}
 
-	// Nomor
-	public function angka($angka)
+	// angka
+	public function angka($angka = '')
 	{
-		$hasil = number_format($angka,'0',',','.');
-		return $hasil;
+	    // Jika angka kosong, NULL, atau 0, langsung kembalikan 0
+	    if (empty($angka) || $angka == 0) {
+	        return 0;
+	    }
+
+	    // Pastikan angka valid sebelum diformat
+	    if (!is_numeric($angka)) {
+	        return 0; // Jika bukan angka, kembalikan 0
+	    }
+
+	    // Format angka menggunakan number_format()
+	    return number_format($angka, 0, ',', '.');
 	}
+
 }

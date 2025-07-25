@@ -69,9 +69,13 @@ $uri = service('uri');
   <script src="<?php echo base_url() ?>assets/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="<?php echo base_url() ?>assets/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="<?php echo base_url() ?>assets/admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- dropzonejs -->
+  <script src="<?php echo base_url() ?>assets/admin/plugins/dropzone/min/dropzone.min.js"></script>
   <!-- SweetAlert2 -->
   <script src="<?php echo base_url() ?>assets/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
   <script src="<?php echo base_url('assets/tinymce/js/tinymce/tinymce.min.js') ?>"></script>
+  <!-- viewerjs -->
+  <script src="<?php echo base_url('assets/viewerjs/pdf.js') ?>" type="text/javascript" charset="utf-8" async defer></script>
   <style type="text/css" media="screen">
     .ui-autocomplete { 
       z-index:2147483647; 
@@ -79,6 +83,10 @@ $uri = service('uri');
     .ui-timepicker-container{ 
          z-index:1151 !important; 
     }
+    .ui-datepicker {
+        z-index: 2147483647 !important;
+    }
+
   </style>
 </head>
 

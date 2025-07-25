@@ -72,7 +72,7 @@ class Dokumen_model extends Model
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
         $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
         $this->where( [  'status_dokumen'         => 'Publish',
-                            'jenis_dokumen'          => 'Dokumen',
+                            'jenis_dokumen'         => 'Dokumen',
                             'dokumen.id_jenis_dokumen'    => $id_jenis_dokumen]);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
@@ -157,6 +157,20 @@ class Dokumen_model extends Model
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
         return $query->getRow();
+    }
+
+    // check
+    public function total_check($id_siswa,$status_jenis_dokumen)
+    {
+        $this->table('dokumen');
+        $this->select('COUNT(dokumen.id_dokumen) AS total,jenis_dokumen.status_jenis_dokumen, max(dokumen.id_siswa) AS id_siswa');
+        $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen');
+        $this->where('dokumen.id_siswa',$id_siswa);
+        $this->where('jenis_dokumen.status_jenis_dokumen',$status_jenis_dokumen);
+        $this->groupBy('jenis_dokumen.id_jenis_dokumen');
+        $this->orderBy('jenis_dokumen.status_jenis_dokumen','DESC');
+        $query = $this->get();
+        return $query->getNumRows();
     }
 
 

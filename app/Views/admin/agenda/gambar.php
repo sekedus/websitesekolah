@@ -2,7 +2,7 @@
     <a href="<?php echo base_url('admin/agenda') ?>" class="btn btn-dark">
         <i class="fa fa-backward"></i> Kembali
     </a>
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
         <i class="fa fa-plus"></i> Tambah Baru
     </button>
 </p>

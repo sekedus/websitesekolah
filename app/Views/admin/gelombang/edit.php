@@ -1,10 +1,10 @@
 <?php echo form_open_multipart(base_url('admin/gelombang/edit/'.$gelombang->id_gelombang)) ?>
 
 <div class="form-group row">
-					<label class="col-3">Nama Periode Pendaftaran</label>
+					<label class="col-3">Nama Periode PPDB</label>
 					<div class="col-9">
-						<input type="text" name="judul" class="form-control" placeholder="Nama Periode Pendaftaran PSB" value="<?php echo $gelombang->judul ?>" required>
-						<small class="text-secondary">Nama Periode Pendaftaran PSB</small>
+						<input type="text" name="judul" class="form-control" placeholder="Nama Periode PPDB" value="<?php echo $gelombang->judul ?>" required>
+						<small class="text-secondary">Nama Periode PPDB. Misal: <strong>PPDB Tahap 1 - Tahun Ajaran <?php echo date('Y')+1; ?>/<?php echo date('Y')+2; ?></strong></small>
 					</div>
 				
 				</div>
@@ -28,27 +28,44 @@
 							<option value="Buka">Buka</option>
 							<option value="Tutup" <?php if($gelombang->status_gelombang=='Tutup') { echo 'selected'; } ?>>Tutup</option>
 						</select>
-						<small class="text-secondary">Status Periode Pendaftaran PSB</small>
+						<small class="text-secondary">Status Periode</small>
 					</div>
 				</div>
 
+				
+
 				<div class="form-group row">
-					<label class="col-3">Gambar/ Logo</label>
+					<label class="col-3">Gambar / Banner</label>
 					
-					<div class="col-9">
+					<div class="col-6">
 						<input type="file" name="gambar" class="form-control" placeholder="Gambar? logo" value="<?php echo $gelombang->gambar ?>">
+					</div>
+					<div class="col-md-2">
+						<?php if($gelombang->gambar=="") { echo '-'; }else{ ?>
+					<img src="<?php echo base_url('assets/upload/image/thumbs/'.$gelombang->gambar) ?>" class="img img-thumbnail">
+				<?php } ?>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-3">Keterangan</label>
 					<div class="col-9">
+						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
+							<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
+						</button>
+						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
+							<i class="fa fa-image"></i> Lihat Galeri
+						</button>
+						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
+							<i class="fa fa-download"></i> Lihat File
+						</button>
 						<textarea name="isi" placeholder="Keterangan" class="form-control konten"><?php echo $gelombang->isi ?></textarea>
 					</div>
 				</div>
 
+
 				<div class="form-group row">
-					<label class="col-3">Tanggal buka, tutup, dan pengumuman PSB</label>
+					<label class="col-3">Tanggal buka, tutup, dan pengumuman PPDB</label>
 
 					<div class="col-3">
 						<input type="text" name="tanggal_buka" class="form-control tanggal" placeholder="dd-mm-yyyy" value="<?php echo date('d-m-Y',strtotime($gelombang->tanggal_buka)) ?>">
@@ -65,6 +82,7 @@
 						<small class="text-secondary">Tanggal pengumuman pendaftaran</small>
 					</div>
 				</div>
+				
 
 <div class="form-group row">
 	<label class="col-3"></label>
@@ -77,4 +95,9 @@
 </div>
 
 
-<?php echo form_close(); ?>
+<?php 
+echo form_close(); 
+echo view('admin/berita/media');
+echo view('admin/berita/download');
+echo view('admin/berita/galeri');
+?>

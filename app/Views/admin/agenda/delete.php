@@ -19,7 +19,7 @@
     <a href="<?php echo base_url('admin/produk/delete/'.$produk->id_produk) ?>" class="btn btn-danger">
     <i class="fa fa-trash"></i> Ya, Hapus data</a>
 
-    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
 
 </div>
 </div>

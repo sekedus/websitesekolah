@@ -12,7 +12,7 @@ class Akun extends BaseController
 		$akun 		= $m_akun->detail($id_akun);
 
 		// proses
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 						=> 'required',
 				'email' 					=> 'required|valid_email',

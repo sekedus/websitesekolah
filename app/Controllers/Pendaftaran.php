@@ -17,12 +17,37 @@ use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
 use App\Models\Dokumen_model;
-
+use App\Models\Gelombang_model;
+use App\Models\Jenjang_pendidikan_model;
+use App\Models\Nav_model;
 
 class Pendaftaran extends BaseController
 {
-	// Kontak
+
+	// index
 	public function index()
+	{
+		$m_konfigurasi 	= new Konfigurasi_model();
+		$m_gelombang 	= new Gelombang_model();
+		$konfigurasi 	= $m_konfigurasi->listing();
+		$gelombang 		= $m_gelombang->aktif();
+
+		$m_akun 		= new Akun_model();
+		$kode_akun 		= strtoupper(random_string('alnum', 64));
+		
+		$data = [	'title'			=> 'Periode Pendaftaran',
+					'description'	=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+					'keywords'		=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'konfigurasi'	=> $konfigurasi,
+					'gelombang'		=> $gelombang,
+					'gelombang2'	=> $gelombang,
+					'content'		=> 'pendaftaran/index'
+				];
+		echo view('layout/wrapper-pendaftaran',$data);
+	}
+
+	// Kontak
+	public function akun()
 	{
 		$m_konfigurasi 	= new Konfigurasi_model();
 		$konfigurasi 	= $m_konfigurasi->listing();
@@ -30,11 +55,10 @@ class Pendaftaran extends BaseController
 		$kode_akun 		= strtoupper(random_string('alnum', 64));
 
 		// proses
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 						=> 'required',
 				'email' 					=> 'required|valid_email|is_unique[akun.email]',
-				'alamat' 					=> 'min_length[32]',
 				'password' 					=> 'min_length[6]|max_length[32]',
 				'telepon'					=> 'required',
 				'konfirmasi_password' 		=> 'required|matches[password]',
@@ -48,31 +72,97 @@ class Pendaftaran extends BaseController
 					'password'			=> sha1($this->request->getVar('password')),
 					'password_hint'		=> $this->request->getVar('password'),
 					'telepon'			=> $this->request->getVar('telepon'),
-					'alamat'			=> $this->request->getVar('alamat'),
 					'kode_akun'			=> $kode_akun,
+					'link_reset' 		=> $kode_akun,
 					'tanggal_post'		=> date('Y-m-d H:i:s')
 	        	);
 	        	$m_akun->tambah($data);
-        		return redirect()->to(base_url('pendaftaran/biodata/'.$kode_akun))->with('sukses', 'Data Akun Berhasil Dibuat. Silakan lanjutkan mengisi biodata.');
+	        	// login
+	        	$username       = $this->request->getPost('email');
+	            $password       = $this->request->getPost('password');
+	            $this->simple_login->login_siswa_akun($username,$password);
+	            // echo Session()->get('username_siswa');
+	            // Link reset
+	            $email 		= $this->request->getVar('email');
+	            $link_reset = base_url('pendaftaran/aktivasi/' . $kode_akun);
+	            $subject    = 'Pendaftaran Akun Berhasil - ' . $this->website->namaweb();
+
+	            // Konfigurasi SMTP
+	            $email_config = [
+	                'protocol'  => $konfigurasi->protocol,
+	                'SMTPHost'  => $konfigurasi->smtp_host,
+	                'SMTPUser'  => $konfigurasi->smtp_user,
+	                'SMTPPass'  => $konfigurasi->smtp_pass,
+	                'SMTPPort'  => (int) $konfigurasi->smtp_port,
+	                'SMTPTimeout' => (int) $konfigurasi->smtp_timeout,
+	                'mailType'  => 'html',
+	                'charset'   => 'utf-8',
+	                'newline'   => "\r\n"
+	            ];
+
+	            // Isi email
+	            $message = "<p>Hai <strong>{$this->request->getVar('nama')}</strong>,</p>";
+	            $message .= "<p>Pendaftaran Akun Anda telah berhasil.</p>";
+	            $message .= "<p>Silakan klik link di bawah ini untuk mengaktifkan akun Anda:</p>";
+	            $message .= "<p><a href='{$link_reset}' style='background-color: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none;'>Aktifkan Akun</a></p>";
+	            $message .= "<p>Jika Anda tidak melakukan pendaftaran ini, abaikan email ini.</p>";
+	            $message .= "<p>Terima kasih,<br>Tim " . $this->website->namaweb() . "</p>";
+
+	            // Load email library
+	            $email_service = \Config\Services::email();
+	            $email_service->initialize($email_config);
+	            $email_service->setFrom($konfigurasi->smtp_user, $this->website->namaweb());
+	            $email_service->setTo($email);
+	            $email_service->setSubject($subject);
+	            $email_service->setMessage($message);
+
+	            // Kirim email
+	            if ($email_service->send()) {
+	                $this->session->setFlashdata('sukses', 'Data Akun Berhasil Dibuat. Silakan lanjutkan memilih periode pendaftaran dan mengisi biodata.');
+	            } else {
+	                $this->session->setFlashdata('warning', 'Data Akun Berhasil Dibuat. Silakan lanjutkan memilih periode pendaftaran dan mengisi biodata.');
+	            }
+	            return redirect()->to(base_url('pendaftaran'));
+	        	// end login
         }else{
-			$data = [	'title'			=> 'Pendaftaran Peserta Didik Baru - Buat Akun',
-						'description'	=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-						'keywords'		=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+			$data = [	'title'			=> 'Buat Akun',
+						'description'	=> 'Buat Akun Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+						'keywords'		=> 'Buat Akun Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 						'konfigurasi'	=> $konfigurasi,
-						'content'		=> 'pendaftaran/index'
+						'content'		=> 'pendaftaran/akun'
 					];
-			echo view('layout/wrapper',$data);
+			echo view('layout/wrapper-pendaftaran',$data);
 		}
 	}
 
-	// biodata
-	public function biodata($kode_akun)
+	// testing
+	public function testing()
 	{
-		$m_konfigurasi 	= new Konfigurasi_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		$m_akun 		= new Akun_model();
-		$akun 			= $m_akun->kode_akun($kode_akun);
-		$m_siswa 		= new Siswa_model();
+		// $this->simple_login->login_siswa_akun('andoyoandoyo@gmail.com','andoyoandoyo');
+		echo Session()->get('username_siswa');
+	}
+
+	// biodata
+	public function biodata($id_gelombang)
+	{
+		$m_konfigurasi 			= new Konfigurasi_model();
+		$m_akun 				= new Akun_model();
+		$m_siswa 				= new Siswa_model();
+		$m_jenjang_pendidikan 	= new Jenjang_pendidikan_model();
+		$m_gelombang 			= new Gelombang_model();
+		$m_nav 					= new Nav_model();
+
+		$konfigurasi 			= $m_konfigurasi->listing();
+		$id_akun 				= $this->session->get('id_akun');
+		$akun 					= $m_akun->detail($id_akun);
+		$jenjang_pendidikan 	= $m_nav->jenjang_pendidikan();
+		$gelombang 				= $m_gelombang->detail($id_gelombang);
+
+		if(strlen(Session()->get('username_siswa')) < 6) {
+			$this->session->setFlashdata('warning','Anda belum login');
+			return redirect()->to(base_url('signin'));
+		}
+		
 		$siswa 			= $m_siswa->last_id();
 		if($siswa) {
 			$urutan = $siswa->id_siswa+1;
@@ -81,7 +171,7 @@ class Pendaftaran extends BaseController
 		}
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_siswa' 	=> 'required',
 				'gambar'	 	=> [
@@ -125,6 +215,7 @@ class Pendaftaran extends BaseController
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
 				$data = [	'id_user'				=> $this->session->get('id_user'),
+							'id_gelombang'			=> $id_gelombang,
 							'id_agama'				=> $this->request->getPost('id_agama'),
 							'id_agama_ayah'			=> $this->request->getPost('id_agama_ayah'),
 							'id_agama_ibu'			=> $this->request->getPost('id_agama_ibu'),
@@ -140,10 +231,11 @@ class Pendaftaran extends BaseController
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,
+							'id_jenjang_pendidikan'	=> $this->request->getPost('id_jenjang_pendidikan'),
 							'kode_siswa'			=> strtoupper(random_string('alnum', 8)),
 							'slug_siswa'			=> $slug_siswa,
-							// 'nis'					=> $this->request->getPost('nis'),
-							// 'nisn'					=> $this->request->getPost('nisn'),
+							'nis'					=> $this->request->getPost('nis'),
+							'nisn'					=> $this->request->getPost('nisn'),
 							'status_wn'				=> $this->request->getPost('status_wn'),
 							'negara_asal'			=> $this->request->getPost('negara_asal'),
 							'nama_siswa'			=> $this->request->getPost('nama_siswa'),
@@ -183,17 +275,19 @@ class Pendaftaran extends BaseController
 							'jumlah_saudara'		=> $this->request->getPost('jumlah_saudara'),
 							'gambar'				=> $nama_siswabaru,
 							'status_siswa'			=> 'Menunggu',
+							'status_pendaftaran'	=> 'Menunggu',
 							'tanggal_baca'			=> date('Y-m-d H:i:s'),
 							'tanggal_post'			=> date('Y-m-d H:i:s')
 						];
 				$m_siswa->tambah($data);
 				// masuk database
 				$this->session->setFlashdata('sukses','Data telah ditambah');
-				return redirect()->to(base_url('admin/siswa'));
+				return redirect()->to(base_url('pendaftaran/dokumen/'.$slug_siswa));
 			}else{
 				// masuk database
 				$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
 				$data = [	'id_user'				=> $this->session->get('id_user'),
+							'id_gelombang'			=> $id_gelombang,
 							'id_agama'				=> $this->request->getPost('id_agama'),
 							'id_agama_ayah'			=> $this->request->getPost('id_agama_ayah'),
 							'id_agama_ibu'			=> $this->request->getPost('id_agama_ibu'),
@@ -209,10 +303,11 @@ class Pendaftaran extends BaseController
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,
+							'id_jenjang_pendidikan'	=> $this->request->getPost('id_jenjang_pendidikan'),
 							'kode_siswa'			=> strtoupper(random_string('alnum', 8)),
 							'slug_siswa'			=> $slug_siswa,
-							// 'nis'					=> $this->request->getPost('nis'),
-							// 'nisn'					=> $this->request->getPost('nisn'),
+							'nis'					=> $this->request->getPost('nis'),
+							'nisn'					=> $this->request->getPost('nisn'),
 							'status_wn'				=> $this->request->getPost('status_wn'),
 							'negara_asal'			=> $this->request->getPost('negara_asal'),
 							'nama_siswa'			=> $this->request->getPost('nama_siswa'),
@@ -252,6 +347,7 @@ class Pendaftaran extends BaseController
 							'jumlah_saudara'		=> $this->request->getPost('jumlah_saudara'),
 							// 'gambar'				=> $nama_siswabaru,
 							'status_siswa'			=> 'Menunggu',
+							'status_pendaftaran'	=> 'Menunggu',
 							'tanggal_baca'			=> date('Y-m-d H:i:s'),
 							'tanggal_post'			=> date('Y-m-d H:i:s')
 						];
@@ -262,14 +358,16 @@ class Pendaftaran extends BaseController
 			}
 	    }else{
 
-			$data = [	'title'				=> 'Pendaftaran Peserta Didik Baru - Isi Biodata',
-						'description'	=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-						'keywords'		=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+			$data = [	'title'			=> 'Isi Biodata Calon Siswa',
+						'description'	=> 'Isi Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+						'keywords'		=> 'Isi Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 						'konfigurasi'	=> $konfigurasi,
 						'akun'			=> $akun,
+						'jenjang_pendidikan'	=> $jenjang_pendidikan,
+						'gelombang'		=> $gelombang,
 						'content'		=> 'pendaftaran/biodata'
 					];
-			echo view('layout/wrapper',$data);
+			echo view('layout/wrapper-pendaftaran',$data);
 		}
 	}
 
@@ -288,7 +386,7 @@ class Pendaftaran extends BaseController
 		$akun 				= $m_akun->detail($siswa->id_akun);
 
 		// Start tambah
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'id_jenis_dokumen' => 'required',
 				'gambar'	 	=> [
@@ -319,7 +417,7 @@ class Pendaftaran extends BaseController
     		return redirect()->to(base_url('pendaftaran/dokumen/'.$slug_siswa))->with('sukses', 'Data Berhasil di Simpan');
 		}else{
 
-			$data = [	'title'				=> 'Pendaftaran Peserta Didik Baru - Unggah Dokumen',
+			$data = [	'title'				=> 'Unggah Dokumen',
 						'description'		=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
 						'keywords'			=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 						'konfigurasi'		=> $konfigurasi,
@@ -329,7 +427,7 @@ class Pendaftaran extends BaseController
 						'm_dokumen'			=> $m_dokumen,
 						'content'			=> 'pendaftaran/dokumen'
 					];
-			echo view('layout/wrapper',$data);
+			echo view('layout/wrapper-pendaftaran',$data);
 		}
 	}
 
@@ -347,7 +445,7 @@ class Pendaftaran extends BaseController
 		$jenis_dokumen 		= $m_jenis_dokumen->listing();
 		$akun 				= $m_akun->detail($siswa->id_akun);
 
-		$data = [	'title'				=> 'Pendaftaran Peserta Didik Baru - Pendaftaran Berhasil',
+		$data = [	'title'				=> 'Pendaftaran Berhasil',
 					'description'		=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
 					'keywords'			=> 'Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 					'konfigurasi'		=> $konfigurasi,
@@ -357,7 +455,7 @@ class Pendaftaran extends BaseController
 					'm_dokumen'			=> $m_dokumen,
 					'content'			=> 'pendaftaran/selesai'
 				];
-		echo view('layout/wrapper',$data);
+		echo view('layout/wrapper-pendaftaran',$data);
 	}
 
 	// cetak

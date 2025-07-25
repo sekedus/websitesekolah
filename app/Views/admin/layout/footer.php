@@ -1,4 +1,5 @@
 </div>
+</div>
               <!-- /.card-body -->
               <div class="card-footer">
                 Page rendered: {elapsed_time} | Versi Framework: <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
@@ -62,18 +63,35 @@ $awal = $sek-100;
 // KONTEN
   tinymce.init({
     selector: '.konten',
-    relative_urls : false,
-    remove_script_host : false,
-    convert_urls : true,
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true,
     toolbar_mode: 'scrolling',
     height: 400,
     plugins: 'print preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample code table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
     toolbar: [
-            'blocks fontfamily fontsize bold italic strikethrough forecolor backcolor copy | code fullscreen preview | save print | pagebreak anchor codesample',
-            'undo redo | alignleft aligncenter alignright alignjustify | link image media table | numlist bullist outdent indent | charmap emoticons removeformat | ltr rtl'
-            ],
-    visual_table_class: 'tiny-table'
-  });
+        'blocks fontfamily fontsize bold italic strikethrough forecolor backcolor copy | code fullscreen preview | save print | pagebreak anchor codesample',
+        'undo redo | alignleft aligncenter alignright alignjustify | link image media table | numlist bullist outdent indent | charmap emoticons removeformat | ltr rtl'
+    ],
+    visual_table_class: 'tiny-table',
+
+    // Integrasi Bootstrap
+    content_style: `
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+        body { font-family: 'Arial', sans-serif; font-size: 16px; padding: 20px;}
+        img { max-width: 100%; height: auto; display: block; margin: 10px auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #dee2e6; padding: 8px; text-align: left; }
+    `,
+
+    // Menyesuaikan gambar agar tidak melebihi lebar textarea
+    setup: function (editor) {
+        editor.on('init', function () {
+            editor.getBody().style.maxWidth = "100%"; 
+        });
+    }
+});
+
 
   // ckeditor
   tinymce.init({
@@ -137,10 +155,7 @@ $awal = $sek-100;
 <script src="<?php echo base_url() ?>assets/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
 <script src="<?php echo base_url() ?>assets/admin/plugins/bs-stepper/js/bs-stepper.min.js"></script>
-<!-- dropzonejs -->
-<script src="<?php echo base_url() ?>assets/admin/plugins/dropzone/min/dropzone.min.js"></script>
-<!-- dropzonejs -->
-<script src="<?php echo base_url() ?>assets/admin/plugins/dropzone/min/dropzone.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/admin/dist/js/adminlte.min.js"></script>
 <script>
@@ -328,61 +343,7 @@ $(document).on("click", ".disable-link", function(e){
     window.stepper = new Stepper(document.querySelector('.bs-stepper'))
   })
 
-  // DropzoneJS Demo Code Start
-  Dropzone.autoDiscover = false
-
-  // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-  var previewNode = document.querySelector("#template")
-  previewNode.id = ""
-  var previewTemplate = previewNode.parentNode.innerHTML
-  previewNode.parentNode.removeChild(previewNode)
-
-  var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-    url: "<?php echo base_url('admin/media/unggah') ?>", // Set the url
-    thumbnailWidth: 80,
-    thumbnailHeight: 80,
-    parallelUploads: 20,
-    previewTemplate: previewTemplate,
-    autoQueue: false, // Make sure the files aren't queued until manually added
-    previewsContainer: "#previews", // Define the container to display the previews
-    clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-  })
-
-  myDropzone.on("addedfile", function(file) {
-    // Hookup the start button
-    file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
-  })
-
-  // Update the total progress bar
-  myDropzone.on("totaluploadprogress", function(progress) {
-    document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-  })
-
-  myDropzone.on("sending", function(file) {
-    // Show the total progress bar when upload starts
-    document.querySelector("#total-progress").style.opacity = "1"
-    // And disable the start button
-    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-  })
-
-  // Hide the total progress bar when nothing's uploading anymore
-  myDropzone.on("queuecomplete", function(progress) {
-    document.querySelector("#total-progress").style.opacity = "0";
-    // Call the listMedia() function to refresh the media list and DataTable
-    listMedia();
-    table.DataTable().ajax.reload(); // Assuming your DataTable is initialized with ajax
-  });
-
-  // Setup the buttons for all transfers
-  // The "add files" button doesn't need to be setup because the config
-  // `clickable` has already been specified.
-  document.querySelector("#actions .start").onclick = function() {
-    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-  }
-  document.querySelector("#actions .cancel").onclick = function() {
-    myDropzone.removeAllFiles(true)
-  }
-  // DropzoneJS Demo Code End
+  
 </script>
 <script>
   $(function () {
@@ -391,8 +352,8 @@ $(document).on("click", ".disable-link", function(e){
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
-      "paging": false,
-      "lengthChange": false,
+      "paging": true,
+      "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,

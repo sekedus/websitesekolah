@@ -128,7 +128,7 @@ class Rombel extends BaseController
 		$kelas 			= $m_kelas->all_jenjang();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'id_tahun' 	=> 'required',
         	])) {
@@ -180,7 +180,7 @@ class Rombel extends BaseController
 		$jenjang 	= $m_jenjang->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_rombel' 	=> 'required|min_length[1]',
         	])) {

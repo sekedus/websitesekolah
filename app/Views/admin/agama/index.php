@@ -16,8 +16,8 @@
 			<td><?php echo $agama->urutan ?></td>
 			<td>
 				
-				<a href="<?php echo base_url('admin/agama/edit/'.$agama->id_agama) ?>" class="btn btn-success btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/agama/delete/'.$agama->id_agama) ?>" class="btn btn-dark btn-sm delete-link"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/agama/edit/'.$agama->id_agama) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/agama/delete/'.$agama->id_agama) ?>" class="btn btn-secondary btn-sm delete-link"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

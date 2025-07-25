@@ -26,6 +26,31 @@ class Gelombang_model extends Model
         return $query->getResult();
     }
 
+    // tahun_ajaran
+    public function akhir($tahun_ajaran)
+    {
+        $builder = $this->db->table('gelombang');
+        $builder->select('*');
+        $builder->where('tahun_ajaran',$tahun_ajaran);
+        $builder->orderBy('gelombang.tahap','DESC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // aktif
+    public function aktif()
+    {
+        $sekarang   = date('Y-m-d');
+        $builder = $this->db->table('gelombang');
+        $builder->select('*');
+        $builder->where('tanggal_buka <=', $sekarang); // Sudah dimulai
+        $builder->where('tanggal_tutup >=', $sekarang); // Belum ditutup
+        $builder->where('status_gelombang','Buka');
+        $builder->orderBy('gelombang.tanggal_buka','ASC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     // cari
     public function cari($keywords)
     {

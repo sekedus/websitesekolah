@@ -150,6 +150,15 @@ echo csrf_field();
 	<div class="form-group row">
 		<label class="col-sm-3 control-label text-right">Deskripsi Lengkap</label>
 		<div class="col-sm-9">
+			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
+			<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
+		</button>
+		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
+			<i class="fa fa-image"></i> Lihat Galeri
+		</button>
+		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
+			<i class="fa fa-download"></i> Lihat File
+		</button>
 			<textarea name="isi" id="isi"  class="form-control konten" placeholder="Deskripsi Agenda"><?php echo $agenda['isi'] ?></textarea>
 		</div>
 	</div>
@@ -184,4 +193,7 @@ echo csrf_field();
 	<?php
 // Form close
 	echo form_close();
+	echo view('admin/berita/media');
+echo view('admin/berita/download');
+echo view('admin/berita/galeri');
 	?>

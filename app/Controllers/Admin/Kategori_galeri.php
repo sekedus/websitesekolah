@@ -16,7 +16,7 @@ class Kategori_galeri extends BaseController
 		$total 				= $m_kategori_galeri->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_galeri' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_galeri extends BaseController
 		$kategori_galeri 	= $m_kategori_galeri->detail($id_kategori_galeri);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_galeri' 	=> 'required',
 				'gambar'	 			=> [

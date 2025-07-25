@@ -16,7 +16,7 @@ class Video extends BaseController
 		$total 		= $m_video->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul' 	=> 'required',
 				'gambar'	 			=> [
@@ -87,7 +87,7 @@ class Video extends BaseController
 		$video 	= $m_video->detail($id_video);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul' 	=> 'required',
 				'gambar'	 			=> [

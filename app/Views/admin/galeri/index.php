@@ -4,10 +4,10 @@
 		<div class="input-group">
           <input type="text" name="keywords" class="form-control" placeholder="Keywords..." value="<?php if(isset($_GET['keywords'])) { echo $_GET['keywords']; } ?>" required>
           <span class="input-group-append">
-            <button type="submit" name="submit" value="Cari" class="btn btn-info btn-flat">
+            <button type="submit" name="submit" value="Cari" class="btn btn-secondary btn-flat">
             	<i class="fa fa-search"></i> Cari
             </button>
-            <a href="<?php echo base_url('admin/galeri/tambah') ?>" class="btn btn-success">
+            <a href="<?php echo base_url('admin/galeri/tambah') ?>" class="btn btn-info">
 				<i class="fa fa-plus"></i> Tambah Baru
 			</a>
           </span>
@@ -49,7 +49,7 @@
 
 <div class="table-responsive mailbox-messages mt-1">		
 
-<table class="table table-sm table-hover" id="example2">
+<table class="tabelku table-sm" id="example2">
 	<thead>
 		<tr class="text-left bg-light">
 			<th width="5%" class="text-center">
@@ -92,8 +92,8 @@
 			<td><?php echo $galeri->nama ?></td>
 			<td>
 				
-				<a href="<?php echo base_url('admin/galeri/edit/'.$galeri->id_galeri) ?>" class="btn btn-success btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/galeri/delete/'.$galeri->id_galeri) ?>" class="btn btn-dark btn-xs mb-1" onclick="confirmation(event)"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/galeri/edit/'.$galeri->id_galeri) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/galeri/delete/'.$galeri->id_galeri) ?>" class="btn btn-secondary btn-xs mb-1 delete-link" onclick="confirmation(event)"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

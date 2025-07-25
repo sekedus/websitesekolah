@@ -1,26 +1,11 @@
-<section class="wrapper bg-soft-primary  bg-image" data-image-src="<?php echo $this->website->banner() ?>">
-  <div class="container  pt-12 pt-md-16 pb-21 pb-md-21 text-center">
-    <div class="row">
-      <div class="col-md-10 col-lg-10 col-xl-10 mx-auto">
-        <h1 class="display-1 mb-3 text-warning">3. Unggah Dokumen Pendukung</h1>
-        <h4><span class="text-secondary">1. Pembuatan Akun</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-secondary">2. Isi Biodata</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-warning">3. Lengkapi Dokumen</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-secondary">4. Pendaftaran Berhasil</span></h4>
-      </div>
-      <!-- /column -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container -->
-</section>
-<!-- /section -->
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/bootstrap/adminlte.min.css">
+
 <!-- /section -->
 <section class="wrapper bg-light">
   <div class="container pb-14 pb-md-16">
     <div class="row">
-      <div class="col-lg-12 mx-auto mt-n20">
+       <div class="col-lg-10 col-xl-10 col-xxl-10 mx-auto mt-n20">
         <div class="card">
-          <div class="card-body p-11">
+          <div class="card-body p-5">
 
             <h2 class="mb-3 text-start">Unggah dokumen pendukung</h2>
               <p class="lead mb-6 text-start">Masukkan data Anda dengan benar dan lengkap.</p>
@@ -104,10 +89,10 @@
                 </td>                
                 <td>
                   <?php if($check_dokumen) { ?>
-                    <a class="btn btn-dark btn-xs mb-1" href="<?php echo base_url('pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>" target="_blank">
+                    <a class="btn btn-dark btn-sm mb-1" href="<?php echo base_url('pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>" target="_blank">
                       <i class="fa fa-download"></i>&nbsp;  Unduh
                     </a>
-                    <a class="btn btn-secondary btn-sm  delete-link" href="<?php echo base_url('pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>">
+                    <a class="btn btn-secondary btn-sm mb-1 delete-link" href="<?php echo base_url('pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>">
                       <i class="fa fa-trash"></i>&nbsp;  Hapus
                     </a>
                   <?php }else{ ?>
@@ -123,8 +108,8 @@
                         <input type="file" name="gambar" class="form-control form-control-sm" placeholder="Unggah" value="" required>
                       </div>
                       <div class="col-md-4">
-                        <button type="submit" name="submit" value="Cari" class="btn btn-dark btn-xs mb-1">
-                          <i class="fa fa-upload"></i>&nbsp; Submit
+                        <button type="submit" name="submit" value="Cari" class="btn btn-success btn-sm mb-1">
+                          <i class="fa fa-upload"></i>&nbsp; Unggah
                         </button>
                     
                       </div>

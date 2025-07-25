@@ -16,7 +16,7 @@ class Kategori_portfolio extends BaseController
 		$total 				= $m_kategori_portfolio->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_portfolio' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_portfolio extends BaseController
 		$kategori_portfolio 	= $m_kategori_portfolio->detail($id_kategori_portfolio);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_portfolio' 	=> 'required',
 				'gambar'	 			=> [

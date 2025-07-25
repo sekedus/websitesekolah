@@ -32,8 +32,8 @@
 			<td class="text-center"><?php if($portfolio) { echo $portfolio->total; }else{ echo 0; } ?> Portfolio</td>
 			<td class="text-center"><?php echo $kategori_portfolio->urutan ?></td>
 			<td>
-				<a href="<?php echo base_url('admin/kategori_portfolio/edit/'.$kategori_portfolio->id_kategori_portfolio) ?>" class="btn btn-success btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/kategori_portfolio/delete/'.$kategori_portfolio->id_kategori_portfolio) ?>" class="btn btn-dark btn-sm delete-link"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/kategori_portfolio/edit/'.$kategori_portfolio->id_kategori_portfolio) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/kategori_portfolio/delete/'.$kategori_portfolio->id_kategori_portfolio) ?>" class="btn btn-secondary btn-sm delete-link"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

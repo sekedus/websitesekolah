@@ -16,7 +16,7 @@ class Link_website extends BaseController
 		$total 				= $m_link_website->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_link_website' 	=> 'required|is_unique[link_website.nama_link_website]',
 				'link_website' 			=> 'required|is_unique[link_website.link_website]',
@@ -88,7 +88,7 @@ class Link_website extends BaseController
 		$link_website 	= $m_link_website->detail($id_link_website);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_link_website' 	=> 'required',
 				'gambar'	 			=> [

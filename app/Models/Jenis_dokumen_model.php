@@ -26,12 +26,45 @@ class Jenis_dokumen_model extends Model
         return $query->getResult();
     }
 
-     // listing
-    public function cabang($id_jenis_dokumen)
+    // listing
+    public function status_jenis_dokumen($status_jenis_dokumen)
     {
-        $builder = $this->db->table('cabang');
+        $builder = $this->db->table('jenis_dokumen');
+        $builder->select('*');
+        $builder->where('status_jenis_dokumen',$status_jenis_dokumen);
+        $builder->orderBy('jenis_dokumen.urutan','ASC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    // listing
+    public function group_status_jenis_dokumen()
+    {
+        $builder = $this->db->table('jenis_dokumen');
+        $builder->select('status_jenis_dokumen,COUNT(*) AS total');
+        $builder->groupBy('status_jenis_dokumen','DESC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    // listing
+    public function group_status_jenis_dokumen_detail($status_jenis_dokumen)
+    {
+        $builder = $this->db->table('jenis_dokumen');
+        $builder->select('status_jenis_dokumen,COUNT(*) AS total');
+        $builder->where('status_jenis_dokumen',$status_jenis_dokumen);
+        $builder->groupBy('status_jenis_dokumen','DESC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // listing
+    public function total_status_jenis_dokumen($status_jenis_dokumen)
+    {
+        $builder = $this->db->table('jenis_dokumen');
         $builder->select('COUNT(*) AS total');
-        $builder->where('id_jenis_dokumen',$id_jenis_dokumen);
+        $builder->where('status_jenis_dokumen',$status_jenis_dokumen);
+        $builder->orderBy('jenis_dokumen.status_jenis_dokumen','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

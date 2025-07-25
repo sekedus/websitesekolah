@@ -15,8 +15,8 @@
 			<td><?php echo $pekerjaan->nama_pekerjaan ?></td>
 			<td><?php echo $pekerjaan->urutan ?></td>
 			<td>
-				<a href="<?php echo base_url('admin/pekerjaan/edit/'.$pekerjaan->id_pekerjaan) ?>" class="btn btn-success btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/pekerjaan/delete/'.$pekerjaan->id_pekerjaan) ?>" class="btn btn-dark btn-sm delete-link"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/pekerjaan/edit/'.$pekerjaan->id_pekerjaan) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/pekerjaan/delete/'.$pekerjaan->id_pekerjaan) ?>" class="btn btn-secondary btn-sm delete-link"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

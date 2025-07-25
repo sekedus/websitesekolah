@@ -39,6 +39,27 @@ class Simple_login
 	}
 
 	// check login
+	public function login_siswa_akun($username,$password)
+	{
+		$this->session  = \Config\Services::session();
+		$uri            = service('uri');
+		$m_siswa 		= new Siswa_model();
+		$m_akun 		= new Akun_model();
+		$user 			= $m_akun->login($username,sha1($password));
+
+		if($user) 
+		{
+			// Jika username password benar
+			$this->session->set('username_siswa',$username);
+			$this->session->set('id_akun',$user->id_akun);
+			$this->session->set('nama',$user->nama);
+			$this->session->set('jenis_akun',$user->jenis_akun);
+			$this->session->set('nis',$user->nis);
+			$this->session->set('nisn',$user->nisn);
+		}
+	}
+
+	// check login
 	public function login_siswa($username,$password)
 	{
 		$this->session  = \Config\Services::session();
@@ -83,7 +104,7 @@ class Simple_login
 		if($this->session->get('username_siswa')=='') 
 		{
 			$pengalihan = str_replace('index.php/','',current_url());
-			$this->session->set('pengalihan',$pengalihan);
+			$this->session->set('pengalihan_siswa',$pengalihan);
 			$this->session->setFlashdata('warning','Anda belum login');
 			header("Location: ".base_url('signin')).'?redirect='.$pengalihan;
 	        exit;
@@ -134,7 +155,7 @@ class Simple_login
 		if($this->session->get('username_client')=='') 
 		{
 			$pengalihan = str_replace('index.php/','',current_url());
-			$this->session->set('pengalihan',$pengalihan);
+			$this->session->set('pengalihan_siswa',$pengalihan);
 			$this->session->setFlashdata('warning','Anda belum login');
 			header("Location: ".base_url('signin')).'?redirect='.$pengalihan;
 	        exit;
@@ -149,6 +170,7 @@ class Simple_login
 		$this->session->remove('id_user');
 		$this->session->remove('akses_level');
 		$this->session->remove('nama');
+		$this->session->remove('pengalihan');
 		$this->session->setFlashdata('sukses','Anda berhasil logout');
 		header("Location: ".base_url('login?logout=sukses'));
         exit;
@@ -164,6 +186,7 @@ class Simple_login
 		$this->session->remove('nama_siswa');
 		$this->session->remove('nis');
 		$this->session->remove('nisn');
+		$this->session->remove('pengalihan_siswa');
 		$this->session->setFlashdata('sukses','Anda berhasil logout');
 		header("Location: ".base_url('signin?logout=sukses'));
         exit;

@@ -4,10 +4,10 @@
 		<div class="input-group">
           <input type="text" name="keywords" class="form-control" placeholder="Keywords..." value="<?php if(isset($_GET['keywords'])) { echo $_GET['keywords']; } ?>" required>
           <span class="input-group-append">
-            <button type="submit" name="submit" value="Cari" class="btn btn-info btn-flat">
+            <button type="submit" name="submit" value="Cari" class="btn btn-secondary btn-flat">
             	<i class="fa fa-search"></i> Cari
             </button>
-            <a href="<?php echo base_url('admin/berita/tambah') ?>" class="btn btn-success">
+            <a href="<?php echo base_url('admin/berita/tambah') ?>" class="btn btn-info">
 				<i class="fa fa-plus"></i> Tambah Baru
 			</a>
           </span>
@@ -47,7 +47,7 @@
 
 <div class="table-responsive mailbox-messages mt-1">		
 
-<table class="table table-sm table-hover" id="example2">
+<table class="tabelku table-sm" id="example2">
 	<thead>
 		<tr class="text-left bg-light">
 			<th width="5%" class="text-center">
@@ -111,10 +111,10 @@
 				<?php } ?>
 				</a>
 			</td>
-			<td class="btn-group">
-				<a href="<?php echo base_url('berita/read/'.$berita->slug_berita) ?>" class="btn btn-primary btn-sm mt-1" target="_blank" title="Baca"><i class="fa fa-eye"></i></a>
-				<a href="<?php echo base_url('admin/berita/edit/'.$berita->id_berita) ?>" class="btn btn-success btn-sm mt-1" title="Edit"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/berita/delete/'.$berita->id_berita) ?>" class="btn btn-secondary btn-sm mt-1 delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
+			<td>
+				<a href="<?php echo base_url('berita/read/'.$berita->slug_berita) ?>" class="btn btn-secondary btn-xs mt-1" target="_blank" title="Baca"><i class="fa fa-eye"></i></a>
+				<a href="<?php echo base_url('admin/berita/edit/'.$berita->id_berita) ?>" class="btn btn-secondary btn-xs mt-1" title="Edit"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/berita/delete/'.$berita->id_berita) ?>" class="btn btn-secondary btn-xs mt-1 delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

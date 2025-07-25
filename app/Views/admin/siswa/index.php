@@ -12,7 +12,7 @@ $uri = service('uri');
 
         <a href="<?php echo base_url('admin/siswa/import') ?>" class="btn btn-secondary">
         <i class="fa fa-file-excel"></i> Import Siswa</a>
-        <a href="<?php echo base_url('admin/siswa/tambah') ?>" class="btn btn-success">
+        <a href="<?php echo base_url('admin/siswa/tambah') ?>" class="btn btn-info">
         <i class="fa fa-plus"></i> Tambah Baru</a>
       </span>
     </div>

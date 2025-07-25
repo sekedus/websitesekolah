@@ -233,11 +233,21 @@ p, h1, h2, h3, h4, h5, h6 {
   color: #fff;
   background-color: #8231D3 !important;
 }
-
 /* Text Color */
 .text-purple {
   color: #8231D3 !important;
 }
+.bg-haqi {
+    color: #ccb43e;
+    background-color: #9c2424 !important;
+}
+.text-haqi {
+  color: #ccb43e;
+}
+.text-haqi-dark {
+  color: #9c2424;
+}
+
 /* alert */
 .alert, .alert-info, .alert-warning, .alert-success, .alert-danger {
   border-radius: 15px;

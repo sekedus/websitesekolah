@@ -97,6 +97,21 @@
 							</td>
 						</tr>
 						<tr>
+							<td>Jenjang Pendidikan</td>
+							<td class="text-center" width="25%">
+		                        <div class="custom-control custom-radio">
+		                          <input class="custom-control-input" type="radio" id="menu_galeri1x" name="menu_jenjang" value="Publish" <?php if($konfigurasi->menu_jenjang=='Publish') { echo 'checked'; } ?>>
+		                          <label for="menu_galeri1x" class="custom-control-label">Ya</label>
+		                        </div>		                       
+							</td>
+							<td class="text-center">
+		                        <div class="custom-control custom-radio">
+		                          <input class="custom-control-input" type="radio" id="menu_galeri2x" name="menu_jenjang" value="Draft" value="Publish" <?php if($konfigurasi->menu_jenjang=='Draft') { echo 'checked'; } ?>>
+		                          <label for="menu_galeri2x" class="custom-control-label">Tidak</label>
+		                        </div>
+							</td>
+						</tr>
+						<tr>
 							<td>Unduhan</td>
 							<td class="text-center" width="25%">
 		                        <div class="custom-control custom-radio">
@@ -160,13 +175,13 @@
 			</div>
 			<div class="card-body">
 				<p>
-					<button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-posisi">
+					<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-posisi">
 						<i class="fa fa-sitemap"></i> Setting Posisi Menu
 					</button>
-					<button type="button" class="btn btn-success btn-xs mb-1" data-toggle="modal" data-target="#modal-basic">
+					<button type="button" class="btn btn-dark btn-sm mb-1" data-toggle="modal" data-target="#modal-basic">
 						<i class="fa fa-plus-circle"></i> Tambah Menu
 					</button>
-					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-sub">
+					<button type="button" class="btn btn-primary btn-sm mb-1" data-toggle="modal" data-target="#modal-sub">
 						<i class="fa fa-plus-circle"></i> Tambah Sub Menu
 					</button>
 					<!-- <a href="<?php echo base_url('admin/menu/urutkan') ?>" class="btn btn-info btn-sm">
@@ -182,7 +197,7 @@ include('tambah-sub.php');
 	<thead>
 		<tr class="bg-light">
 			<th width="5%">No</th>
-			<th width="50%">Nama</th>
+			<th width="40%">Nama</th>
 			<th width="10%">Status</th>
 			<th width="5%">Urutan</th>
 			<th width="10%" class="text-center">Sub Menu</th>

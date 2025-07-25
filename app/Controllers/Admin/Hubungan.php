@@ -16,7 +16,7 @@ class Hubungan extends BaseController
 		$total 	= $m_hubungan->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_hubungan' 	=> 'required|min_length[1]|is_unique[hubungan.nama_hubungan]',
         	])) {
@@ -47,7 +47,7 @@ class Hubungan extends BaseController
 		$hubungan 	= $m_hubungan->detail($id_hubungan);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_hubungan' 	=> 'required|min_length[1]',
         	])) {

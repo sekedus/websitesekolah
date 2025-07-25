@@ -16,7 +16,7 @@ class Kategori_client extends BaseController
 		$total 				= $m_kategori_client->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_client' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_client extends BaseController
 		$kategori_client 	= $m_kategori_client->detail($id_kategori_client);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_client' 	=> 'required',
 				'gambar'	 			=> [

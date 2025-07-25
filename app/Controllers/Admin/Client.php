@@ -51,14 +51,13 @@ class Client extends BaseController
 
 	// Tambah
 	public function tambah()
-	{
-		
+	{		
 		$m_client 			= new Client_model();
 		$m_kategori_client 	= new Kategori_client_model();
 		$kategori_client 	= $m_kategori_client->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_client' 	=> 'required',
 				'gambar'	 	=> [
@@ -71,12 +70,12 @@ class Client extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_clientbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/client/',$nama_clientbaru);
+	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_clientbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/client/'.$nama_clientbaru)
+			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_clientbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/client/thumbs/'.$nama_clientbaru);
+			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_clientbaru);
 	        	// masuk database
 	        	$data = array(
 	        		'id_user'			=> $this->session->get('id_user'),
@@ -197,7 +196,7 @@ class Client extends BaseController
 		$kategori_client 	= $m_kategori_client->listing();
 		$client 			= $m_client->detail($id_client);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_client' 	=> 'required',
 				'gambar'	 	=> [
@@ -209,12 +208,12 @@ class Client extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_clientbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/client/',$nama_clientbaru);
+	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_clientbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/client/'.$nama_clientbaru)
+			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_clientbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/client/thumbs/'.$nama_clientbaru);
+			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_clientbaru);
 	        	// masuk database
 			    $data = array(
 	        		'id_client'			=> $id_client,

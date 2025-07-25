@@ -130,7 +130,7 @@ class Agenda extends BaseController
 
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_agenda' 	=> 'required',
 				'gambar'	 	=> [
@@ -230,7 +230,7 @@ class Agenda extends BaseController
 		$kategori_agenda 	= $m_kategori_agenda->listing();
 		$agenda 			= $m_agenda->detail($id_agenda);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_agenda' 	=> 'required',
 				'gambar'	 	=> [
@@ -333,7 +333,7 @@ class Agenda extends BaseController
 		$gambar_agenda  	= $m_gambar_agenda->agenda($id_agenda);
 		// Start validasi
 		if(isset($_POST['simpan'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'gambar'	 	=> [
 										 'uploaded[gambar]',
@@ -363,7 +363,7 @@ class Agenda extends BaseController
 	       		 	return redirect()->to(base_url('admin/agenda/gambar/'.$id_agenda))->with('sukses', 'Data Berhasil di Simpan');
 		    }
 		}elseif(isset($_POST['update'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'gambar'	 	=> [
 						                'mime_in[gambar,image/jpg,image/jpeg,image/gif,image/png]',
@@ -427,7 +427,7 @@ class Agenda extends BaseController
 		$jadwal  			= $m_jadwal->agenda($id_agenda);
 		// Start validasi
 		if(isset($_POST['simpan'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'nama_jadwal' 	=> 'required',
 	        	])) {
@@ -449,7 +449,7 @@ class Agenda extends BaseController
 	       		 	return redirect()->to(base_url('admin/agenda/jadwal/'.$id_agenda))->with('sukses', 'Data Berhasil di Simpan');
 		    }
 		}elseif(isset($_POST['update'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'nama_agenda' 	=> 'required',
 	        	])) {
@@ -493,7 +493,7 @@ class Agenda extends BaseController
 		$lokasi_agenda  	= $m_lokasi_agenda->agenda($id_agenda);
 		// Start validasi
 		if(isset($_POST['simpan'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'id_desa' 	=> 'required'
 	        	])) {
@@ -507,7 +507,7 @@ class Agenda extends BaseController
 	       		 	return redirect()->to(base_url('admin/agenda/lokasi/'.$id_agenda))->with('sukses', 'Data Berhasil di Simpan');
 		    }
 		}elseif(isset($_POST['update'])) {
-			if($this->request->getMethod() === 'post' && $this->validate(
+			if($this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'id_desa' 	=> 'required'
 	        	])) {

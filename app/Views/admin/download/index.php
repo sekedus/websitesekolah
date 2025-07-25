@@ -4,10 +4,10 @@
 		<div class="input-group">
           <input type="text" name="keywords" class="form-control" placeholder="Keywords..." value="<?php if(isset($_GET['keywords'])) { echo $_GET['keywords']; } ?>" required>
           <span class="input-group-append">
-            <button type="submit" name="submit" value="Cari" class="btn btn-info btn-flat">
+            <button type="submit" name="submit" value="Cari" class="btn btn-secondary btn-flat">
             	<i class="fa fa-search"></i> Cari
             </button>
-            <a href="<?php echo base_url('admin/download/tambah') ?>" class="btn btn-success">
+            <a href="<?php echo base_url('admin/download/tambah') ?>" class="btn btn-info">
 							<i class="fa fa-plus"></i> Tambah Baru
 						</a>
 						<?php if(isset($_GET['keywords'])) { ?>
@@ -52,7 +52,7 @@
 
 <div class="table-responsive mailbox-messages mt-1">		
 
-<table class="table table-sm table-hover" id="example2">
+<table class="tabelku table-sm" id="example2">
 	<thead>
 		<tr class="text-left bg-light">
 			<th width="5%" class="text-center">
@@ -118,7 +118,7 @@
 					<a href="<?php echo base_url('admin/download/unduh/'.$download->id_download) ?>" class="btn btn-info btn-sm mt-1" target="_blank"><i class="fa fa-download"></i> Unduh</a>
 				<?php } ?>
 				<a href="<?php echo base_url('admin/download/edit/'.$download->id_download) ?>" class="btn btn-success btn-sm mt-1" title="Edit"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/download/delete/'.$download->id_download) ?>" class="btn btn-secondary btn-sm mt-1 delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/download/delete/'.$download->id_download) ?>" class="btn btn-secondary btn-xs mt-1 delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
 				</div>
 			</td>
 		</tr>

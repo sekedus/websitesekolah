@@ -114,7 +114,7 @@ class Staff extends BaseController
 		$kategori_staff 	= $m_kategori_staff->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 		=> 'required',
 				'gambar'	 	=> [
@@ -199,7 +199,7 @@ class Staff extends BaseController
 		$kategori_staff 	= $m_kategori_staff->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 		=> 'required',
 				'gambar'	 	=> [

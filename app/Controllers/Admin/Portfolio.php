@@ -58,7 +58,7 @@ class Portfolio extends BaseController
 		$kategori_portfolio 	= $m_kategori_portfolio->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_portfolio' 	=> 'required',
 				'gambar'	 	=> [
@@ -181,7 +181,7 @@ class Portfolio extends BaseController
 		$kategori_portfolio 	= $m_kategori_portfolio->listing();
 		$portfolio 			= $m_portfolio->detail($id_portfolio);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_portfolio' 	=> 'required',
 				'gambar'	 	=> [

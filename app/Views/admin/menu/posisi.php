@@ -51,6 +51,10 @@ echo csrf_field();
                           <input class="custom-control-input" type="radio" id="letak_menu_6" name="letak_menu" value="Tautan" <?php if($konfigurasi->letak_menu=='Tautan') { echo 'checked'; } ?>>
                           <label for="letak_menu_6" class="custom-control-label">Tautan</label>
                         </div>
+                        <div class="custom-control custom-radio">
+                          <input class="custom-control-input" type="radio" id="letak_menu_8" name="letak_menu" value="Tautan" <?php if($konfigurasi->letak_menu=='Jenjang') { echo 'checked'; } ?>>
+                          <label for="letak_menu_8" class="custom-control-label">Jenjang Pendidikan</label>
+                        </div>
                       </div>
 
 					

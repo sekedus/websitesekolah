@@ -27,6 +27,15 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-md-3">Upload Gambar Fasilitas</label>
 	<div class="col-md-6">
+		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
+							<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
+						</button>
+						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
+							<i class="fa fa-image"></i> Lihat Galeri
+						</button>
+						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
+							<i class="fa fa-download"></i> Lihat File
+						</button>
 		<input type="file" name="gambar" class="form-control" value="<?php echo set_value('gambar') ?>">
 	</div>
 </div>
@@ -110,4 +119,8 @@ echo csrf_field();
 	</div>
 </div>
 
-<?php echo form_close(); ?>
+<?php echo form_close(); 
+echo view('admin/berita/media');
+echo view('admin/berita/download');
+echo view('admin/berita/galeri');
+?>

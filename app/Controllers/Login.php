@@ -10,7 +10,7 @@ class Login extends BaseController
     public function index()
     {
         // Start validasi
-        if($this->request->getMethod() === 'post' && $this->validate(
+        if($this->request->getMethod() === 'POST' && $this->validate(
             [
             'username'  => 'required|min_length[3]',
             'password'  => 'required|min_length[3]',
@@ -63,7 +63,7 @@ class Login extends BaseController
         ];
         $this->email->initialize($config);
         // Start validasi
-        if($this->request->getMethod() === 'post' && $this->validate(
+        if($this->request->getMethod() === 'POST' && $this->validate(
             [
             'email'  => 'required|min_length[3]',
             ])) 
@@ -126,7 +126,7 @@ class Login extends BaseController
             return redirect()->to(base_url('login'));
         }
         // Start validasi
-        if($this->request->getMethod() === 'post' && $this->validate([
+        if($this->request->getMethod() === 'POST' && $this->validate([
             'password'                  => 'required|min_length[6]',
             'password_konfirmasi'       => 'required|matches[password]'
         ])) {

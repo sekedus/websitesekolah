@@ -16,7 +16,7 @@ class Kategori_fasilitas extends BaseController
 		$total 				= $m_kategori_fasilitas->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_fasilitas' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_fasilitas extends BaseController
 		$kategori_fasilitas 	= $m_kategori_fasilitas->detail($id_kategori_fasilitas);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_fasilitas' 	=> 'required',
 				'gambar'	 			=> [

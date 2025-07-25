@@ -27,7 +27,7 @@ class Register extends BaseController
 		$konfigurasi 	= $m_konfigurasi->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_client' 				=> [	'rules'  	=> 'required',
 								            'errors' 	=> [

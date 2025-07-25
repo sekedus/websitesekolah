@@ -16,7 +16,7 @@ class Tahun extends BaseController
 		$total 	= $m_tahun->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_tahun' 	=> 'required|min_length[1]|is_unique[tahun.nama_tahun]',
         	])) {
@@ -48,7 +48,7 @@ class Tahun extends BaseController
 		$tahun 	= $m_tahun->detail($id_tahun);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_tahun' 	=> 'required|min_length[1]',
         	])) {

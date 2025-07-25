@@ -68,7 +68,7 @@ class Galeri extends BaseController
 		$kategori_galeri 	= $m_kategori_galeri->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_galeri' 	=> 'required',
 				'gambar'	 	=> [
@@ -189,7 +189,7 @@ class Galeri extends BaseController
 		$kategori_galeri 	= $m_kategori_galeri->listing();
 		$galeri 			= $m_galeri->detail($id_galeri);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_galeri' 	=> 'required',
 				'gambar'	 	=> [

@@ -7,21 +7,26 @@
 <title><?php echo $title ?></title>
 <link rel="shortcut icon" href="<?php echo $this->website->icon() ?>">
 <meta name="generator" content="<?php echo $this->website->namaweb() ?>">
-<meta name="twitter:card" content="<?php echo $description ?>"/>
+<meta name="twitter:card" content="<?php echo strip_tags($description) ?>"/>
 <meta name="twitter:image:src" content="">
 <meta property="og:image" content="">
-<meta name="twitter:title" content="<?php echo $title ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta name="description" content="<?php echo $description ?>">
-<meta name="amp-script-src" content="<?php echo $description ?>">
+<meta name="twitter:title" content="<?php echo strip_tags($title) ?>">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="description" content="<?php echo strip_tags($description) ?>">
+<meta name="amp-script-src" content="<?php echo strip_tags($description) ?>">
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="theme-color" content="#ffffff">
+<script async src="https://cdn.ampproject.org/v0.js"></script>
 <!-- All CSS File-->
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/template/assets/css/plugins.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/template/assets/css/style.css">
-<link rel="preload" href="<?php echo base_url() ?>assets/template/assets/css/fonts/dm.css" as="style" onload="this.rel='stylesheet'">
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/template/assets/css/fonts/dm.css">
 <!-- DataTables -->
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -51,6 +56,20 @@
 <script src="<?php echo base_url() ?>assets/admin/plugins/sweetalert2/sweetalert2.min.js"></script>
  <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <?php echo $this->website->metatext() ?>
+<style type="text/css" media="screen">
+	body {
+	  font-family: "Dosis", sans-serif !important;
+	  font-optical-sizing: auto;
+	  font-weight: <weight>;
+	  font-style: normal;
+	}
+	.konten img {
+		width:  auto;
+		height: auto;
+		max-width: 100%;
+		border-radius: 10px;
+	}
+</style>
 </head>
 
 <body>

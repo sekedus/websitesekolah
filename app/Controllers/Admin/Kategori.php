@@ -16,7 +16,7 @@ class Kategori extends BaseController
 		$total 		= $m_kategori->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_kategori' 	=> 'required|min_length[3]|is_unique[kategori.nama_kategori]',
         	])) {
@@ -49,7 +49,7 @@ class Kategori extends BaseController
 		$total 		= $m_kategori->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_kategori' 	=> 'required|min_length[3]',
         	])) {

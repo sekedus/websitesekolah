@@ -16,7 +16,7 @@ class Kategori_staff extends BaseController
 		$total 				= $m_kategori_staff->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_staff' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_staff extends BaseController
 		$kategori_staff 	= $m_kategori_staff->detail($id_kategori_staff);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_staff' 	=> 'required',
 				'gambar'	 			=> [

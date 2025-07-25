@@ -32,15 +32,28 @@
           <li class="nav-item <?php if($uri->getSegment(2)=="pendaftar" || $uri->getSegment(2)=="kategori"){echo 'menu-open';}?>">
             <a href="#" class="nav-link <?php if($uri->getSegment(2)=="pendaftar" || $uri->getSegment(2)=="kategori"){echo 'active';}?>">
               <i class="nav-icon fas fa-graduation-cap"></i>
-              <p>PSB Online <i class="right fas fa-angle-left"></i></p>
+              <p>PPDB Online <i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
+              
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/pendaftar') ?>" class="nav-link" >
+                <a href="<?php echo base_url('admin/gelombang') ?>" class="nav-link">
                   <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Data Calon Siswa</p>
+                  <p>Periode PPDB</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/konfigurasi/pendaftaran') ?>" class="nav-link">
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Buka/Tutup PPDB</p>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a href="<?php echo base_url('admin/pendaftar') ?>" class="nav-link" >
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Data Pendaftar</p>
+                </a>
+              </li> -->
               <li class="nav-item">
                 <a href="<?php echo base_url('admin/akun_pendaftar') ?>" class="nav-link">
                   <i class="fa fa-arrow-right nav-icon"></i>
@@ -48,9 +61,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/gelombang') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if($uri->getSegment(2)=="jenis_dokumen"){echo 'active';}?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Gelombang/Periode PSB</p>
+                  <p>Jenis Dokumen PPDB</p>
                 </a>
               </li>
             </ul>
@@ -110,6 +123,12 @@
                 <a href="<?php echo base_url('admin/kategori_galeri') ?>" class="nav-link">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Kategori Galeri &amp; Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/konfigurasi/banner') ?>" class="nav-link <?php if($uri->getSegment(3)=="banner"){echo 'active';}?>">
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Update Background Banner Utama</p>
                 </a>
               </li>
             </ul>
@@ -292,7 +311,31 @@
             </ul>
           </li>
 
+          <!-- jenjang_pendidikan -->
+          <li class="nav-item <?php if($uri->getSegment(2)=="jenjang_pendidikan" || $uri->getSegment(2)=="kategori"){echo 'menu-open';}?>">
+            <a href="#" class="nav-link <?php if($uri->getSegment(2)=="jenjang_pendidikan" || $uri->getSegment(2)=="kategori"){echo 'active';}?>">
+              <i class="nav-icon fas fa-chair"></i>
+              <p>Jenjang Pendidikan <i class="right fas fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/jenjang_pendidikan') ?>" class="nav-link" >
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Data Jenjang Pendidikan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/jenjang_pendidikan/tambah') ?>" class="nav-link">
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Tambah Jenjang Pendidikan</p>
+                </a>
+              </li>
+    
+            </ul>
+          </li>
+
          <!-- Akademik -->
+         <!-- 
           <li class="nav-item <?php if($uri->getSegment(2)=="siswa" || $uri->getSegment(2)=="rombel" || $uri->getSegment(2)=="tahun" || $uri->getSegment(2)=="kelas"){echo 'menu-open';}?>">
             <a href="#" class="nav-link <?php if($uri->getSegment(2)=="siswa" || $uri->getSegment(2)=="rombel" || $uri->getSegment(2)=="tahun" || $uri->getSegment(2)=="kelas"){echo 'active';}?>">
               <i class="nav-icon fas fa-graduation-cap"></i>
@@ -327,7 +370,7 @@
               </li>
             </ul>
           </li>
-
+ -->
           <!-- CLIENT -->
           <li class="nav-item <?php if($uri->getSegment(2)=="client" || $uri->getSegment(2)=="kategori_client"){echo 'menu-open';}?>">
             <a href="#" class="nav-link <?php if($uri->getSegment(2)=="client" || $uri->getSegment(2)=="kategori_client"){echo 'active';}?>">
@@ -453,7 +496,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi') ?>" class="nav-link <?php if($uri->getSegment(2)=="konfigurasi"){echo 'active';}?>">
+                <a href="<?php echo base_url('admin/konfigurasi') ?>" class="nav-link <?php if($uri->getSegment(2)=="konfigurasi" && $uri->getSegment(3)==""){echo 'active';}?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Setting Aplikasi</p>
                 </a>
@@ -483,6 +526,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?php echo base_url('admin/konfigurasi/login') ?>" class="nav-link <?php if($uri->getSegment(3)=="login"){echo 'active';}?>">
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Background Login</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if($uri->getSegment(2)=="jenis_dokumen"){echo 'active';}?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Jenis Dokumen Pendaftaran</p>
@@ -492,6 +541,12 @@
                 <a href="<?php echo base_url('admin/konfigurasi/sekolah') ?>" class="nav-link <?php if($uri->getSegment(3)=="sekolah"){echo 'active';}?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Informasi Sekolah</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/konfigurasi/seo') ?>" class="nav-link <?php if($uri->getSegment(3)=="seo"){echo 'active';}?>">
+                  <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>SEO dan Google Webmaster</p>
                 </a>
               </li>
             </ul>
@@ -527,7 +582,7 @@
           <div class="col-12">
             <!-- Default box -->
             <div class="card">
-              <div class="card-header">
+              <!-- <div class="card-header">
                 <h3 class="card-title"><?php echo $title ?></h3>
 
                 <div class="card-tools">
@@ -538,8 +593,8 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
-              </div>
-              <div class="card-body" style="min-height: 400px;">
+              </div> -->
+              <div class="card-body pt-4" style="min-height: 400px;">
 
                 <?php 
 $validation = \Config\Services::validation();

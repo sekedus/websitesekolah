@@ -58,7 +58,7 @@ class Fasilitas extends BaseController
 		$kategori_fasilitas 	= $m_kategori_fasilitas->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_fasilitas' 	=> 'required|is_unique[fasilitas.judul_fasilitas]',
 				'gambar'	 	=> [
@@ -188,7 +188,7 @@ class Fasilitas extends BaseController
 		$kategori_fasilitas 	= $m_kategori_fasilitas->listing();
 		$fasilitas 			= $m_fasilitas->detail($id_fasilitas);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_fasilitas' 	=> 'required',
 				'gambar'	 	=> [

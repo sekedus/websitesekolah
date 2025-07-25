@@ -164,6 +164,19 @@ class Akun_model extends Model
         return $query->getRow();
     }
 
+    // email
+    public function email($email)
+    {
+        $builder = $this->db->table('akun');
+        $builder->select('akun.*, siswa.nama_siswa, siswa.slug_siswa, users.nama AS nama_user');
+        $builder->join('siswa','siswa.nis = akun.nis','LEFT');
+        $builder->join('users','users.id_user = akun.id_user','LEFT');
+        $builder->where('akun.email',$email);
+        $builder->orderBy('akun.id_akun','DESC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
     // detail
     public function detail($id_akun)
     {

@@ -16,7 +16,7 @@ class Jenjang extends BaseController
 		$total 	= $m_jenjang->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_jenjang' 	=> 'required|min_length[1]|is_unique[jenjang.nama_jenjang]',
         	])) {
@@ -48,7 +48,7 @@ class Jenjang extends BaseController
 		$jenjang 	= $m_jenjang->detail($id_jenjang);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_jenjang' 	=> 'required|min_length[1]',
         	])) {

@@ -1,11 +1,13 @@
 <?php 
 namespace App\Controllers\Admin;
-
+use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Controller;
 use App\Models\Media_model;
 
 class Media extends BaseController
 {
+
+	use ResponseTrait; // Helper untuk response JSON
 
 	// mainpage
 	public function index()
@@ -16,7 +18,7 @@ class Media extends BaseController
 		$total 	= $m_media->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_media' 	=> 'required|min_length[1]|is_unique[media.nama_media]',
         	])) {
@@ -48,11 +50,9 @@ class Media extends BaseController
 	// unggah
 	public function unggah()
 	{
-		
 		$m_media 			= new Media_model();
-
 		// Start tambah
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'file'	 	=> [
 									'uploaded[file]',
@@ -89,7 +89,7 @@ class Media extends BaseController
 		$this->simple_login->checklogin();
 		$m_media	= new Media_model();
 		$data 		= $m_media->all();
-		echo json_encode($data);
+		return $this->respond(["data" => $data ]);
 	}
 
 	// edit
@@ -100,7 +100,7 @@ class Media extends BaseController
 		$media 	= $m_media->detail($id_media);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_media' 	=> 'required|min_length[1]',
         	])) {

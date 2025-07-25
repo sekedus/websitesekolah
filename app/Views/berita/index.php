@@ -17,7 +17,7 @@
         <div class="col-lg-12 mx-auto">
             <div class="blog classic-view mt-n17 row justify-content-center">
         <?php foreach($berita as $berita) { ?>
-            <div class="col-md-6">
+            <div class="col-md-4">
             <article class="post">
                 <div class="card">
                   <figure class="card-img-top overlay overlay-1 hover-scale">

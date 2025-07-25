@@ -19,7 +19,7 @@ class User extends BaseController
 		$total 		= $m_user->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 		=> 'required',
             	'username' 	=> 'required|min_length[3]|is_unique[users.username]',
@@ -57,7 +57,7 @@ class User extends BaseController
 		$staff 		= $m_staff->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama' 	=> 'required|min_length[3]',
         	])) {

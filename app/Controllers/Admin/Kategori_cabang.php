@@ -16,7 +16,7 @@ class Kategori_cabang extends BaseController
 		$total 				= $m_kategori_cabang->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_cabang' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_cabang extends BaseController
 		$kategori_cabang 	= $m_kategori_cabang->detail($id_kategori_cabang);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_cabang' 	=> 'required',
 				'gambar'	 			=> [

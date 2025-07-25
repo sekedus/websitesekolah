@@ -58,7 +58,7 @@ class Prestasi extends BaseController
 		$kategori_prestasi 	= $m_kategori_prestasi->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_prestasi' 	=> 'required|is_unique[prestasi.judul_prestasi]',
 				'gambar'	 	=> [
@@ -192,7 +192,7 @@ class Prestasi extends BaseController
 		$kategori_prestasi 	= $m_kategori_prestasi->listing();
 		$prestasi 			= $m_prestasi->detail($id_prestasi);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_prestasi' 	=> 'required',
 				'gambar'	 	=> [

@@ -1,91 +1,132 @@
-<section class="wrapper bg-soft-primary  bg-image" data-image-src="<?php echo $this->website->banner() ?>">
-  <div class="container  pt-12 pt-md-16 pb-21 pb-md-21 text-center">
-    <div class="row">
-      <div class="col-md-10 col-lg-10 col-xl-10 mx-auto">
-        <h1 class="display-1 mb-3 text-warning">1. Buat Akun</h1>
-        <h4><span class="text-warning">1. Pembuatan Akun</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-secondary">2. Isi Biodata</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-secondary">3. Lengkapi Dokumen</span> <i class="fa fa-chevron-right text-secondary"></i> <span class="text-secondary">4. Pendaftaran Berhasil</span></h4>
-      </div>
-      <!-- /column -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container -->
-</section>
-<!-- /section -->
+
 
 <!-- /section -->
 <section class="wrapper bg-light">
   <div class="container pb-14 pb-md-16">
     <div class="row">
-      <div class="col-lg-8 col-xl-8 col-xxl-8 mx-auto mt-n20">
+      <div class="col-lg-10 col-xl-10 col-xxl-10 mx-auto mt-n20">
         <div class="card">
-          <div class="card-body p-11">
+          <div class="card-body p-5">
 
-            <h2 class="mb-3 text-start">Membuat akun pendaftaran di <?php echo $this->website->namaweb() ?></h2>
-              <p class="lead mb-6 text-start">Masukkan data Anda dengan benar dan lengkap.</p>
+              <?php if (Session()->get('username_siswa') != '') { ?>
+                <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>. Anda sudah berhasil login. 
+                  <br>Silakan klik Tombol <strong class="text-danger">Daftar Online</strong> untuk melakukan Proses PPDB.</p>
 
-              <?php 
-              $validation = \Config\Services::validation();
-                  $errors = $validation->getErrors();
-                  if(!empty($errors))
-                  {
-                      echo '<span class="text-danger">'.$validation->listErrors().'</span>';
-                  }
-              if (session('msg')) : 
-              ?>
-                   <div class="alert alert-info alert-dismissible">
-                       <?= session('msg') ?>
-                       <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-                   </div>
-               <?php endif ?>
+                  
+              <?php }else{ ?>
+                 
+                  <p class="text-center">Sudah punya Akun? <a href="<?php echo base_url('signin') ?>" class="hover">Login di sini</a>. <br>Jika Anda Belum Memiliki Akun, silakan <a href="<?php echo base_url('pendaftaran/akun') ?>">Buat Akun</a> terlebih dahulu.
+                  <br>Tombol <strong>Daftar Online</strong> akan otomatis aktif jika Anda sudah melakukan login dengan akun yang sudah Anda miliki.</p>
+                <?php } ?>
 
-              <?php echo form_open(base_url('pendaftaran')) ?>
-                <div class="form-floating mb-4">
-                  <input type="text" class="form-control" name="nama" value="<?php echo set_value('nama') ?>"  placeholder="Name" id="loginName">
-                  <label for="loginName" class="text-primary">Nama</label>
-                </div>
+              <?php foreach($gelombang as $gelombang) { ?> <!-- Gunakan $gelombang agar tidak konflik -->
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <?php if ($gelombang->gambar == "") { ?>
+                                    <img src="<?php echo $this->website->icon() ?>" class="img img-thumbnail">
+                                <?php } else { ?>
+                                    <img src="<?php echo base_url('assets/upload/image/' . $gelombang->gambar) ?>" class="img img-thumbnail">
+                                <?php } ?>
+                            </div>
+                            <div class="col-md-9">
+                                <h2><?php echo $gelombang->judul ?></h2>
+                                <p>
+                                    <span class="text-secondary">Tahun:</span> <?php echo $gelombang->tahun_ajaran ?>
+                                    <br><span class="text-secondary">Pembukaan:</span> <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
+                                    <br><span class="text-secondary">Penutupan:</span> <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
+                                    <br><span class="text-secondary">Pengumuman:</span> <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
+                                </p>
+                                <p>
+                                    <button type="button" class="btn btn-primary btn-sm rounded text-white mb-1" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#Gelombang<?php echo $gelombang->id_gelombang ?>">
+                                        Lihat Detail &nbsp;<i class="fa fa-eye"></i>
+                                    </button>
+                                    <?php if (Session()->get('username_siswa') != '') { ?>
+                                        <a href="<?php echo base_url('siswa/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
+                                           class="btn btn-danger btn-sm text-white mb-1">
+                                           <i class="fa fa-edit"></i>&nbsp; Daftar Online
+                                        </a>
+                                    <?php } else { ?>
+                                      <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
+                                            <i class="fa fa-edit"></i>&nbsp; Daftar Online
+                                        </a>
 
-                <div class="form-floating mb-4">
-                  <input type="email" class="form-control" name="email" value="<?php echo set_value('email') ?>"  placeholder="Email" id="loginEmail">
-                  <label for="loginEmail" class="text-primary">Email (Username)</label>
+                                        <a href="<?php echo base_url('pendaftaran/akun') ?>" class="btn btn-success btn-sm text-white mb-1">
+                                            <i class="fa fa-user-edit"></i>&nbsp; Buat akun
+                                        </a>
+                                        <a href="<?php echo base_url('signin') ?>" class="btn btn-info btn-sm text-white mb-1">
+                                            <i class="fa fa-user-lock"></i>&nbsp; Login
+                                        </a>
+                                        
+                                        
+                                        
+                                    <?php } ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 
-                  <div class="form-floating password-field mb-4">
-                    <input type="password" class="form-control" name="password" placeholder="Password" id="loginPassword" minlength="6" maxlength="32">
-                    <span class="password-toggle"><i class="uil uil-eye"></i></span>
-                    <label for="loginPassword" class="text-primary">Password minimal 6 dan maksimal 32 karakter</label>
-                  </div>
-
-                  <div class="form-floating password-field mb-4">
-                    <input type="password" class="form-control" name="konfirmasi_password" placeholder="Konfirmasi Password" id="loginPasswordConfirm" minlength="6" maxlength="32">
-                    <span class="password-toggle"><i class="uil uil-eye"></i></span>
-                    <label for="loginPasswordConfirm" class="text-primary">Konfirmasi Password</label>
-                  </div>
+            <?php } ?>
 
                 
-                <div class="form-floating mb-4">
-                  <input type="text" class="form-control" name="telepon"  value="<?php echo set_value('telepon') ?>" placeholder="Telepon/HP" id="Telepon">
-                  <label for="loginEmail" class="text-primary">Telepon/HP</label>
-                </div>
-
-                <div class="form-floating mb-4">
-                  <textarea name="alamat" class="form-control" placeholder="Alamat" required="required"><?php echo set_value('alamat') ?></textarea>
-                  <label for="loginEmail" class="text-primary">Alamat lengkap</label>
-                </div>
-
-                <p>
-                  <button type="reset" name="reset" value="reset" class="btn btn-warning rounded-pill btn-login w-40 mb-2">Reset &nbsp; <i class="fa fa-times-circle"></i></button>
-                  <button type="submit" name="submit" value="submit" class="btn btn-primary rounded-pill btn-login w-60 mb-2">Buat Akun dan Lanjutkan &nbsp; <i class="fa fa-arrow-circle-right"></i></button>
-                </p>
-              </form>
-              <!-- /form -->
-              <p class="mb-0">Sudah punya Akun? <a href="https://javawebmedia.com/signin" class="hover">Login di sini</a></p>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<?php foreach($gelombang2 as $gelombang) { ?>
+<!-- Modal -->
+                <div class="modal fade" id="Gelombang<?php echo $gelombang->id_gelombang ?>" tabindex="10700" 
+                     aria-labelledby="modalTitle<?php echo $gelombang->id_gelombang ?>" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                    
+                            <div class="modal-body">
+                              <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              <h2 class="modal-title mb-2" id="modalTitle<?php echo $gelombang->id_gelombang ?>">
+                                    <?php echo $gelombang->judul ?>
+                                </h2>
+                              <div class="row">
+                                <div class="col-md-3">
+                                    <?php if ($gelombang->gambar == "") { ?>
+                                        <img src="<?php echo $this->website->icon() ?>" class="img img-thumbnail">
+                                    <?php } else { ?>
+                                        <img src="<?php echo base_url('assets/upload/image/' . $gelombang->gambar) ?>" class="img img-thumbnail">
+                                    <?php } ?>
+                                </div>
+                                <div class="col-md-9">
+                                  <?php echo $gelombang->isi ?>
+                               
+                                  <p>
+                                    <?php if (Session()->get('username_siswa') != '') { ?>
+                                        <a href="<?php echo base_url('pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
+                                           class="btn btn-success btn-sm text-white mb-1">
+                                           <i class="fa fa-edit"></i>&nbsp; Daftar
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
+                                            <i class="fa fa-edit"></i>&nbsp; Daftar Online
+                                        </a>
+                                        <a href="<?php echo base_url('pendaftaran/akun') ?>" class="btn btn-success btn-sm text-white mb-1">
+                                            <i class="fa fa-user-edit"></i>&nbsp; Buat akun
+                                        </a>
+                                        <a href="<?php echo base_url('signin') ?>" class="btn btn-info btn-sm text-white mb-1">
+                                            <i class="fa fa-user-lock"></i>&nbsp; Login
+                                        </a>
+                                    <?php } ?>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>                      
+                        </div>
+                    </div>
+                </div>
+<?php } ?>
 

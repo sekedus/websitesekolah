@@ -19,7 +19,7 @@ class Kelas extends BaseController
 		$total 			= $m_kelas->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kelas' 	=> 'required|min_length[1]|is_unique[kelas.nama_kelas]',
         	])) {
@@ -56,7 +56,7 @@ class Kelas extends BaseController
 		$jenjang 	= $m_jenjang->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_kelas' 	=> 'required|min_length[1]',
         	])) {

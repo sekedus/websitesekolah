@@ -5,7 +5,7 @@ $konfigurasi  = new Konfigurasi_model;
 $site         = $konfigurasi->listing();
 ?>
 <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -15,7 +15,7 @@ $site         = $konfigurasi->listing();
         <a href="<?php echo base_url('siswa/dasbor') ?>" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo base_url() ?>" class="nav-link" target="_blank">Homepage</a>
+        <a href="<?php echo base_url() ?>" class="nav-link" target="_blank">Beranda</a>
       </li>
       
     </ul>
@@ -35,7 +35,7 @@ $site         = $konfigurasi->listing();
       </li>
       <li class="nav-item">
         <a href="<?php echo base_url('signin/logout') ?>" class="nav-link text-danger">
-          <i class="fa fa-sign-out-alt"></i> Logout</a>
+          <i class="fa fa-sign-out-alt"></i></a>
       </li>
     </ul>
   </nav>

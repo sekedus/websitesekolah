@@ -16,7 +16,7 @@ class Kategori_download extends BaseController
 		$total 				= $m_kategori_download->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_download' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_download extends BaseController
 		$kategori_download 	= $m_kategori_download->detail($id_kategori_download);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_download' 	=> 'required',
 				'gambar'	 			=> [

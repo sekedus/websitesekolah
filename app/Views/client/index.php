@@ -30,7 +30,7 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="<?php echo base_url('assets/upload/client/'.$client['gambar']) ?>" class="img-fluid" alt="">
+                <img src="<?php echo base_url('assets/upload/image/'.$client['gambar']) ?>" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <h4><?php echo $client['nama'] ?></h4>

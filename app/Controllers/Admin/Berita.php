@@ -50,6 +50,14 @@ class Berita extends BaseController
 		echo view('admin/layout/wrapper',$data);
 	}
 
+	// testing
+	public function testing()
+	{
+		$data = [	'title'			=> 'Unggah media',
+				];
+		echo view('admin/berita/unggah',$data);
+	}
+
 	// kategori
 	public function kategori($id_kategori)
 	{
@@ -146,7 +154,7 @@ class Berita extends BaseController
 		$kategori 		= $m_kategori->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_berita' 	=> 'required',
 				'gambar'	 	=> [
@@ -221,7 +229,7 @@ class Berita extends BaseController
 		$kategori 		= $m_kategori->listing();
 		$berita 		= $m_berita->detail($id_berita);
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_berita' 	=> 'required',
 				'gambar'	 	=> [

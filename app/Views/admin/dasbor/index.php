@@ -6,12 +6,29 @@
 <div class="row">
 	<div class="col-12 col-sm-6 col-md-3">
 		<div class="info-box">
+			<span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-question"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Panduan Penggunaan</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/dasbor/panduan') ?>" class="btn btn-xs btn-outline-success">
+						<i class="fa fa-eye"></i> Baca Panduan
+					</a>
+				</span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
+	<!-- col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
 			<span class="info-box-icon bg-info elevation-1"><i class="fas fa-calendar-check"></i></span>
 
 			<div class="info-box-content">
-				<span class="info-box-text">Penilaian Harian</span>
+				<span class="info-box-text">Periode PPDB</span>
 				<span class="info-box-number">
-					<a href="<?php echo base_url('admin/nilai') ?>" class="btn btn-xs btn-outline-success">
+					<a href="<?php echo base_url('admin/gelombang') ?>" class="btn btn-xs btn-outline-success">
 						<i class="fa fa-calendar-check"></i> Lihat dan Kelola
 					</a>
 				</span>
@@ -23,12 +40,12 @@
 	<!-- /.col -->
 	<div class="col-12 col-sm-6 col-md-3">
 		<div class="info-box mb-3">
-			<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-check-circle"></i></span>
+			<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-newspaper"></i></span>
 
 			<div class="info-box-content">
-				<span class="info-box-text">Input Rapor Siswa</span>
+				<span class="info-box-text">Artikel dan Berita</span>
 				<span class="info-box-number">
-					<a href="<?php echo base_url('admin/raport') ?>" class="btn btn-xs btn-outline-success">
+					<a href="<?php echo base_url('admin/berita') ?>" class="btn btn-xs btn-outline-success">
 						<i class="fa fa-check-circle"></i> Lihat dan Kelola
 					</a>
 				</span>
@@ -41,12 +58,12 @@
 	<?php if(Session()->get('akses_level')=='Admin') { ?>
 		<div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box">
-				<span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+				<span class="info-box-icon bg-success elevation-1"><i class="fas fa-image"></i></span>
 
 				<div class="info-box-content">
-					<span class="info-box-text">Data Siswa</span>
+					<span class="info-box-text">Banner dan Galeri</span>
 					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/siswa') ?>" class="btn btn-xs btn-outline-success">
+						<a href="<?php echo base_url('admin/galeri') ?>" class="btn btn-xs btn-outline-success">
 							<i class="fa fa-users"></i> Lihat dan Kelola
 						</a>
 					</span>
@@ -75,13 +92,13 @@
 		<!-- /.col -->
 		<div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box">
-				<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sitemap"></i></span>
+				<span class="info-box-icon bg-warning elevation-1"><i class="fab fa-youtube"></i></span>
 
 				<div class="info-box-content">
-					<span class="info-box-text">Rombongan Belajar</span>
+					<span class="info-box-text">Video Youtube</span>
 					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/rombel') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-sitemap"></i> Lihat dan Kelola
+						<a href="<?php echo base_url('admin/video') ?>" class="btn btn-xs btn-outline-success">
+							<i class="fa fa-eye"></i> Lihat dan Kelola
 						</a>
 					</span>
 				</div>

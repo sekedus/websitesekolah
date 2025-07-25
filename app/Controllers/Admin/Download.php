@@ -133,13 +133,13 @@ class Download extends BaseController
 		$kategori_download 		= $m_kategori_download->listing();
 
 		// Start tambah
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_download' => 'required',
 				'gambar'	 	=> [
 									'uploaded[gambar]',
-					                'ext_in[gambar,jpg,jpeg,png,gif,zip,rar,doc,docx,xls,xlsx,ppt,pptx,pdf]',
-					                'max_size[gambar,24096]',
+        'mime_in[gambar,image/jpg,image/jpeg,image/png,image/gif,application/zip,application/x-rar-compressed,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf]',
+        'max_size[gambar,24096]',
             					],
         	])) {
 			if(!empty($_FILES['gambar']['name'])) {
@@ -198,12 +198,13 @@ class Download extends BaseController
 		$kategori_download 		= $m_kategori_download->listing();
 		$download 				= $m_download->detail($id_download);
 		// Start database
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'judul_download' => 'required',
 				'gambar'	 	=> [
-					                'ext_in[gambar,jpg,jpeg,png,gif,zip,rar,doc,docx,xls,xlsx,ppt,pptx,pdf]',
-					                'max_size[gambar,24096]',
+					              
+        'mime_in[gambar,image/jpg,image/jpeg,image/png,image/gif,application/zip,application/x-rar-compressed,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf]',
+        'max_size[gambar,24096]',
             					],
         	])) {
 			if(!empty($_FILES['gambar']['name'])) {

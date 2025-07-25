@@ -9,6 +9,9 @@
         <a href="<?php echo base_url('admin/dasbor') ?>" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?php echo base_url('admin/dasbor/panduan') ?>" class="nav-link">Panduan</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo base_url() ?>" class="nav-link" target="_blank">Beranda</a>
       </li>
     </ul>

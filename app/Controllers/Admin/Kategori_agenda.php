@@ -15,7 +15,7 @@ class Kategori_agenda extends BaseController
 		$total 	= $m_kategori_agenda->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_agenda' 		=> 'required',
 				'gambar'	 		=> [
@@ -81,7 +81,7 @@ class Kategori_agenda extends BaseController
 		$kategori_agenda 	= $m_kategori_agenda->detail($id_kategori_agenda);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_agenda' 		=> 'required',
 				'gambar'	 	=> [

@@ -16,7 +16,7 @@ class Kategori_ekstrakurikuler extends BaseController
 		$total 				= $m_kategori_ekstrakurikuler->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_ekstrakurikuler' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_ekstrakurikuler extends BaseController
 		$kategori_ekstrakurikuler 	= $m_kategori_ekstrakurikuler->detail($id_kategori_ekstrakurikuler);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_ekstrakurikuler' 	=> 'required',
 				'gambar'	 			=> [

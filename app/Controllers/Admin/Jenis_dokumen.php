@@ -16,7 +16,7 @@ class Jenis_dokumen extends BaseController
 		$total 				= $m_jenis_dokumen->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_jenis_dokumen' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Jenis_dokumen extends BaseController
 		$jenis_dokumen 	= $m_jenis_dokumen->detail($id_jenis_dokumen);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_jenis_dokumen' 	=> 'required',
 				'gambar'	 			=> [

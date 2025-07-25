@@ -12,22 +12,13 @@ $site         = $konfigurasi->listing();
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?php echo base_url('siswa/dasbor') ?>" class="brand-link">
       <img src="<?php echo base_url('assets/upload/image/'.$site->icon) ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><?php echo $site->namaweb ?></span>
+      <span class="brand-text font-weight-light"><?php echo $site->singkatan ?></span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<?php echo base_url() ?>/assets/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="<?php echo base_url('siswa/akun') ?>" class="d-block"><?php echo $session->get('nama_lengkap') ?></a>
-        </div>
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -35,7 +26,7 @@ $site         = $konfigurasi->listing();
           <!-- Dahboard -->
           <li class="nav-item">
             <a href="<?php echo base_url('siswa/dasbor') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
           </li>
@@ -44,23 +35,23 @@ $site         = $konfigurasi->listing();
           <li class="nav-item">
             <a href="<?php echo base_url('siswa/pendaftaran') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
-              <p>Data Pendaftaran</p>
+              <p>Data PPDB</p>
             </a>
           </li>
 
           <!-- Siswa -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/kelulusan') ?>" class="nav-link">
+            <a href="<?php echo base_url('siswa/gelombang') ?>" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
-              <p>Data Kelulusan</p>
+              <p>Periode PPDB</p>
             </a>
           </li>
 
           <!-- Siswa -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/profil') ?>" class="nav-link">
+            <a href="<?php echo base_url('siswa/akun') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
-              <p>Profil Siswa</p>
+              <p>Akun Saya</p>
             </a>
           </li>
           
@@ -83,15 +74,10 @@ $site         = $konfigurasi->listing();
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-12">
             <h1><?php echo $title ?></h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?php echo base_url('siswa/dasbor') ?>">Dashboard</a></li>
-              <li class="breadcrumb-item active"><?php echo $title ?></li>
-            </ol>
-          </div>
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -102,9 +88,7 @@ $site         = $konfigurasi->listing();
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"><?php echo $title ?></h3>
-              </div>
+
               <!-- /.card-header -->
               <div class="card-body" style="min-height: 500px;">
 

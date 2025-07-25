@@ -40,7 +40,8 @@ class Menu extends BaseController
 						'menu_galeri'		=> $this->request->getPost('menu_galeri'),
 						'menu_unduhan'		=> $this->request->getPost('menu_unduhan'),
 						'menu_tautan'		=> $this->request->getPost('menu_tautan'),
-						'menu_kontak'	=> $this->request->getPost('menu_kontak')
+						'menu_jenjang'		=> $this->request->getPost('menu_jenjang'),
+						'menu_kontak'		=> $this->request->getPost('menu_kontak')
 					];
 			$m_konfigurasi->edit($data);
 			// masuk database
@@ -61,7 +62,7 @@ class Menu extends BaseController
 		}
 		// end update menu
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_menu' 	=> 'required|min_length[3]',
         	])) {
@@ -177,7 +178,7 @@ class Menu extends BaseController
 		$menu 		= $m_menu->detail($id_menu);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_menu' 	=> 'required|min_length[3]',
         	])) {
@@ -229,7 +230,7 @@ class Menu extends BaseController
 		$sub_menu 		= $m_sub_menu->detail($id_sub_menu);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_menu' 	=> 'required|min_length[3]',
         	])) {

@@ -85,7 +85,7 @@ echo csrf_field();
 	<label class="col-md-2">Isi Berita <span class="text-danger">*</span></label>
 	<div class="col-md-10">
 		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
-			<i class="fa fa-plus-circle"></i> Upload Media
+			<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
 		</button>
 		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
 			<i class="fa fa-image"></i> Lihat Galeri

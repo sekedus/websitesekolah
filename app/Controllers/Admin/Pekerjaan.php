@@ -16,7 +16,7 @@ class Pekerjaan extends BaseController
 		$total 	= $m_pekerjaan->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_pekerjaan' 	=> 'required|min_length[3]|is_unique[pekerjaan.nama_pekerjaan]',
         	])) {
@@ -46,7 +46,7 @@ class Pekerjaan extends BaseController
 		$pekerjaan 	= $m_pekerjaan->detail($id_pekerjaan);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
             'nama_pekerjaan' 	=> 'required|min_length[3]',
         	])) {

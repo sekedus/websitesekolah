@@ -30,7 +30,7 @@ class Akun extends BaseController
 		
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 		=> 'required',
         	])) {

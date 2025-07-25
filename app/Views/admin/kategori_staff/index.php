@@ -32,8 +32,8 @@
 			<td class="text-center"><?php if($staff) { echo $staff->total; }else{ echo 0; } ?> Staff</td>
 			<td class="text-center"><?php echo $kategori_staff->urutan ?></td>
 			<td>
-				<a href="<?php echo base_url('admin/kategori_staff/edit/'.$kategori_staff->id_kategori_staff) ?>" class="btn btn-success btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/kategori_staff/delete/'.$kategori_staff->id_kategori_staff) ?>" class="btn btn-dark btn-sm delete-link"><i class="fa fa-trash"></i></a>
+				<a href="<?php echo base_url('admin/kategori_staff/edit/'.$kategori_staff->id_kategori_staff) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+				<a href="<?php echo base_url('admin/kategori_staff/delete/'.$kategori_staff->id_kategori_staff) ?>" class="btn btn-secondary btn-sm delete-link"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		<?php $no++; } ?>

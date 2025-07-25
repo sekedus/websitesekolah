@@ -16,7 +16,7 @@ class Kategori_prestasi extends BaseController
 		$total 				= $m_kategori_prestasi->total();
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_prestasi' 	=> 'required',
 				'gambar'	 			=> [
@@ -83,7 +83,7 @@ class Kategori_prestasi extends BaseController
 		$kategori_prestasi 	= $m_kategori_prestasi->detail($id_kategori_prestasi);
 
 		// Start validasi
-		if($this->request->getMethod() === 'post' && $this->validate(
+		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama_kategori_prestasi' 	=> 'required',
 				'gambar'	 			=> [
