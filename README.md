@@ -1,7 +1,7 @@
 # Website Profil dan Manajemen Sekolah menguunakan CodeIgniter 4 Framework
 Aplikasi website profil dan manajemen sekolah dari [Java Web Media](https://javawebmedia.com/) dengan berbagai fitur yang semoga bermanfaat. 
 
-Demo unofficial sementara http://sekolah.down.my.id/
+Demo unofficial sementara https://haqi.sch.id/
 
 Spesifikasi Teknis Source Code
 Website ini dikembangkan dengan beberapa spesifikasi:
