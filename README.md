@@ -50,7 +50,8 @@ Website ini dikembangkan dengan beberapa spesifikasi:
 18. Halaman kelola menu front end
 19. Halaman kelola pengguna sistem
 20. Halaman kelola konfigurasi (website, logo dan icon, about us, banner, email, informasi detail sekolah)
-21. Dan fitur lainnya
+21. Pendaftaran Siswa Baru (PSB)
+22. Dan fitur lainnya
 
 ## Mengakses Halaman Website dan Login ke Admin
 1. Buka browser Anda
